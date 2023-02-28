@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="688,3289.2" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="632,4000" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="35">
+    <scg:List x:TypeArguments="x:String" Capacity="40">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -36,10 +36,15 @@
       <x:String>UiPath.Excel.Activities</x:String>
       <x:String>UiPath.Excel.Model</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="58">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="62">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -97,9 +102,13 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Order Process" sap:VirtualizedContainerService.HintSize="496,2535.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="Order Process" sap:VirtualizedContainerService.HintSize="642,3934.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strWPUsername" />
       <Variable x:TypeArguments="x:String" Name="strWPPassword" />
@@ -108,29 +117,30 @@
       <Variable x:TypeArguments="x:String" Name="strPayPassword" />
       <Variable x:TypeArguments="ss:SecureString" Name="strSecurePayPassword" />
       <Variable x:TypeArguments="x:String" Name="strWPWebsite" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtData" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="434,95.2" sap2010:WorkflowViewState.IdRef="Comment_1" Text="&quot;Manually enter information needed. In this case, PayPal login, WP login credentials, and site names.&quot;" />
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Private: WP Login Page" sap:VirtualizedContainerService.HintSize="434,242.8" sap2010:WorkflowViewState.IdRef="InputDialog_5" IsPassword="False" Label="Enter Login WP page:" Title="WP Website">
+    <ui:Comment sap:VirtualizedContainerService.HintSize="580,95.6" sap2010:WorkflowViewState.IdRef="Comment_1" Text="&quot;Manually enter information needed. In this case, PayPal login, WP login credentials, and site names.&quot;" />
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Private: WP Login Page" sap:VirtualizedContainerService.HintSize="580,242.8" sap2010:WorkflowViewState.IdRef="InputDialog_5" IsPassword="False" Label="Enter Login WP page:" Title="WP Website">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[strWPWebsite]</OutArgument>
       </ui:InputDialog.Result>
     </ui:InputDialog>
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Private: WP Username" sap:VirtualizedContainerService.HintSize="434,242.8" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Enter WP Username:" Title="WP Username">
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Private: WP Username" sap:VirtualizedContainerService.HintSize="580,242.8" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Enter WP Username:" Title="WP Username">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[strWPUsername]</OutArgument>
       </ui:InputDialog.Result>
     </ui:InputDialog>
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Private: WP Password" sap:VirtualizedContainerService.HintSize="434,242.8" sap2010:WorkflowViewState.IdRef="InputDialog_2" IsPassword="True" Label="Please enter WP Password:" Title="WP Password">
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Private: WP Password" sap:VirtualizedContainerService.HintSize="580,242.8" sap2010:WorkflowViewState.IdRef="InputDialog_2" IsPassword="True" Label="Please enter WP Password:" Title="WP Password">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[strWPPassword]</OutArgument>
       </ui:InputDialog.Result>
     </ui:InputDialog>
-    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap:VirtualizedContainerService.HintSize="580,82" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="ss:SecureString">[strSecureWPPassword]</OutArgument>
       </Assign.To>
@@ -138,17 +148,17 @@
         <InArgument x:TypeArguments="ss:SecureString">[new System.Net.NetworkCredential("", strWPPassword).SecurePassword]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Private: PayPal Email" sap:VirtualizedContainerService.HintSize="434,242.8" sap2010:WorkflowViewState.IdRef="InputDialog_3" IsPassword="False" Label="Enter Paypal Email:" Title="Paypal Email">
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Private: PayPal Email" sap:VirtualizedContainerService.HintSize="580,242.8" sap2010:WorkflowViewState.IdRef="InputDialog_3" IsPassword="False" Label="Enter Paypal Email:" Title="Paypal Email">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[strPayEmail]</OutArgument>
       </ui:InputDialog.Result>
     </ui:InputDialog>
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Private: PayPal Password" sap:VirtualizedContainerService.HintSize="434,242.8" sap2010:WorkflowViewState.IdRef="InputDialog_4" IsPassword="True" Label="Enter PayPal Password:" Title="Paypal Password">
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Private: PayPal Password" sap:VirtualizedContainerService.HintSize="580,242.8" sap2010:WorkflowViewState.IdRef="InputDialog_4" IsPassword="True" Label="Enter PayPal Password:" Title="Paypal Password">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[strPayPassword]</OutArgument>
       </ui:InputDialog.Result>
     </ui:InputDialog>
-    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap:VirtualizedContainerService.HintSize="580,82" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="ss:SecureString">[strSecurePayPassword]</OutArgument>
       </Assign.To>
@@ -156,32 +166,95 @@
         <InArgument x:TypeArguments="ss:SecureString">[new System.Net.NetworkCredential("", strPayPassword).SecurePassword]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="434,76" sap2010:WorkflowViewState.IdRef="Comment_2" Text="&quot;Open .xlsx file and add a new column called 'Tracking ID'...&quot;" />
-    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="434,514.8" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
+    <ui:Comment sap:VirtualizedContainerService.HintSize="580,76" sap2010:WorkflowViewState.IdRef="Comment_2" Text="&quot;Open .xlsx file and add a new column called 'Tracking ID'...&quot;" />
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="580,514.8" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
       <ueab:ExcelProcessScopeX.Body>
         <ActivityAction x:TypeArguments="ui:IExcelProcess">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Add Tracking Column" sap:VirtualizedContainerService.HintSize="400,428" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="Add Tracking Column" sap:VirtualizedContainerService.HintSize="450,428" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <Sequence.Variables>
-              <Variable x:TypeArguments="sd:DataTable" Name="dtData" />
-              <Variable x:TypeArguments="x:String" Name="strProcessOrderFile">
-                <Variable.Default>
-                  <Literal x:TypeArguments="x:String">processingOrders.xlsx</Literal>
-                </Variable.Default>
-              </Variable>
+              <Variable x:TypeArguments="x:String" Default="processingOrders.xlsx" Name="strProcessOrderFile" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtData]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="338,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="[strProcessOrderFile]" />
-            <ui:AddDataColumn x:TypeArguments="x:String" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" AllowDBNull="True" ColumnName="Tracking ID" DataTable="[dtData]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="338,188.8" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3" />
+            <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtData]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="[strProcessOrderFile]" />
+            <ui:AddDataColumn x:TypeArguments="x:String" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" AllowDBNull="True" ColumnName="Tracking ID" DataTable="[dtData]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="388,188.8" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3" />
           </Sequence>
         </ActivityAction>
       </ueab:ExcelProcessScopeX.Body>
     </ueab:ExcelProcessScopeX>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="580,76" sap2010:WorkflowViewState.IdRef="Comment_3" Text="&quot;Open up PayPal and go to transactions according to worksheet.&quot;" />
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Bing" sap:VirtualizedContainerService.HintSize="580,1243.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="9e1afd70-2f67-437b-b8a8-87d4f328681f" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Go To PayPal" sap:VirtualizedContainerService.HintSize="546,1025.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="484,914.4" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+              <ui:ForEachRow.Body>
+                <ActivityAction x:TypeArguments="sd:DataRow">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Get Pay URL" sap:VirtualizedContainerService.HintSize="450,796.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="strCurrentUrl" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="388,82.4" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" Url="[&quot;https://www.paypal.com/activity/payment/&quot; + row(&quot;Order ID&quot;).ToString]" Version="V3" />
+                    <uix:NGetAttribute Attribute="https://www.paypal.com/signin" DisplayName="Get Attribute 'https://www.paypal.com/…'" sap:VirtualizedContainerService.HintSize="388,208.4" sap2010:WorkflowViewState.IdRef="NGetAttribute_1" ScopeIdentifier="9e1afd70-2f67-437b-b8a8-87d4f328681f" Version="V3">
+                      <uix:NGetAttribute.Result>
+                        <OutArgument x:TypeArguments="x:String">[strCurrentUrl]</OutArgument>
+                      </uix:NGetAttribute.Result>
+                      <uix:NGetAttribute.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="378, 111, 2198, 65" DesignTimeScaleFactor="2.5" ElementType="InputBox" FriendlyName="'https://www.paypal.com/…'" FullSelectorArgument="&lt;ctrl name='Log in to your PayPal account - Microsoft Edge' role='pane' /&gt;&lt;ctrl name='App bar' role='tool bar' /&gt;&lt;ctrl name='Address and search bar' role='editable text' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Log in to your PayPal account - Microsoft Edge' role='pane' /&gt;&lt;ctrl name='App bar' role='tool bar' /&gt;&lt;ctrl name='Address and search bar' role='editable text' automationid='' /&gt;" Guid="368eaee7-adac-4797-b0b3-9bbf2366f2db" ImageBase64="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" InformativeScreenshot="392d41bba1d9fcbce4ef3d9bcc2095bb.png" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='Log in to your PayPal account and 1 more page - Personal - Micro*' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V1" Visibility="Interactive" />
+                      </uix:NGetAttribute.Target>
+                    </uix:NGetAttribute>
+                    <If Condition="[strCurrentUrl.Contains(&quot;signin&quot;)]" sap:VirtualizedContainerService.HintSize="388,313.2" sap2010:WorkflowViewState.IdRef="If_1">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="300,81.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="300,81.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEachRow.Body>
+            </ui:ForEachRow>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAJOgAACToAYJjBRwAAAE1SURBVFhH7ZXrccMgEIRVAiW4FDcU5A6SDqwOlEIiUYLcgUux99AqgF5BmMkf883c2HN3HMvxUFUoFGJRF3NW+qdRur/DHrRB1V2L2Ilp+UFxpWpz9SZdt7q7Si6H5cFOrrvb6oTrNmQVsVj5R28wwXmaxP7X/XeQg07Ywa+C4qegsO6+GFogsSAXwhhKBwfOraw2Ld2b2O44EQ3d6aDI8FswYkXcjknAne50vGIPunaBABzYY2N28YtJcbp38cfQlQ6KuAfn+BYMdKeDIvLqjQVxwOje5Oih/ZPZimDmk6EFEgtycz3NKOa6IDa++3Y78KusyPD6RXUrGjuJfx2jbbtbh6GIsBNrNu9EThEChMjTLAfN74jclEa2wubMn+TcImIoIibmIuj+X5yI7U95ofDuVNUToEN3Uyyxs3sAAAAASUVORK5CYII=" InformativeScreenshot="e5a56c20cee112c7fa3edb223f812788.jpg" Selector="&lt;html app='msedge.exe' title='Bing' /&gt;" Url="https://www.bing.com/" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
   </Sequence>
 </Activity>
