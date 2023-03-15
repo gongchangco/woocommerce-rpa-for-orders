@@ -1,3 +1,10 @@
 # environment variables
 .env
 .env.production
+
+# Others
+orderProcessing/*.*
+
+# Except these files
+!orderProcessing/*.xaml
+!orderProcessing/*.json

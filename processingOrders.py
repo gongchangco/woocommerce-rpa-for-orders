@@ -1,11 +1,16 @@
+import os
 import pandas as pd
 from woocommerce import API
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Get the API key from WooCommerce
 wcapi = API(
-    url             =   'YOUR_WEBSITE_NAME.COM',
-    consumer_key    =   'YOUR_API_KEY',
-    consumer_secret =   'YOUR_API_SECRET',
+    url             =   os.getenv('WOOCOMMERCE_URL'),
+    consumer_key    =   os.getenv('WOOCOMMERCE_API_KEY'),
+    consumer_secret =   os.getenv('WOOCOMMERCE_API_SECRET'),
     wp_api          =   True,
     version         =   'wc/v3',
     timeout         =   20
@@ -42,7 +47,10 @@ df = pd.DataFrame(
 
 # print(df)
 
+# Add empty column for Tracking Id
+df['Tracking ID'] = ''
+
 # Export the dataframe to a xlsx file
-df.to_excel('processingOrders.xlsx', index=False)
+df.to_excel('orderProcessing/processingOrders.xlsx', index=False)
 
 print("Processing orders exported successfully!")
