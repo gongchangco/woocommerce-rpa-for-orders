@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="PayPalSign" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="878,3587.6" sap2010:WorkflowViewState.IdRef="PayPalSign_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="PayPalSign" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="878,3968" sap2010:WorkflowViewState.IdRef="PayPalSign_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -104,9 +104,13 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>System.Data.Common</AssemblyReference>
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PayPalSignIn" sap:VirtualizedContainerService.HintSize="888,3522.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PayPalSignIn" sap:VirtualizedContainerService.HintSize="888,3902.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strPayEmail" />
       <Variable x:TypeArguments="x:String" Name="strPayPassword" />
@@ -137,13 +141,13 @@
         <InArgument x:TypeArguments="ss:SecureString">[new System.Net.NetworkCredential("", strPayPassword).SecurePassword]</InArgument>
       </Assign.Value>
     </Assign>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Browser Edge: Log in to your PayPal account" sap:VirtualizedContainerService.HintSize="826,2723.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="205a3380-64e0-41f9-903f-b270cd503c83" Version="V2" WindowResize="Maximize">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Browser Edge: Log in to your PayPal account" sap:VirtualizedContainerService.HintSize="826,3058" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="205a3380-64e0-41f9-903f-b270cd503c83" Version="V2" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="792,2506" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="792,2840.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -177,26 +181,26 @@
               </uix:NClick.Target>
             </uix:NClick>
             <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dtData]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="730,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="processingOrders.xlsx" />
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="730,1270.8" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="730,1281.2" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                   </ActivityAction.Argument>
-                  <Sequence sap:VirtualizedContainerService.HintSize="696,1153.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <Sequence sap:VirtualizedContainerService.HintSize="696,1163.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Sequence sap:VirtualizedContainerService.HintSize="634,1038.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <Sequence sap:VirtualizedContainerService.HintSize="634,1049.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="572,924.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="572,934.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="strTrackId" />
                           <Variable x:TypeArguments="x:String" Default="[&quot;paypal.com/activity/payment/&quot; + row.Item(&quot;Order ID&quot;).ToString]" Name="strPayId" />
@@ -207,7 +211,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                         <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="510,82.4" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" Url="[strPayId]" Version="V3" />
-                        <uix:NGetText ContinueOnError="True" DisplayName="Get Tracking ID" sap:VirtualizedContainerService.HintSize="510,157.6" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="205a3380-64e0-41f9-903f-b270cd503c83" TextString="[strTrackId]" Version="V3">
+                        <uix:NGetText ContinueOnError="True" DisplayName="Get Tracking ID" sap:VirtualizedContainerService.HintSize="510,157.6" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="205a3380-64e0-41f9-903f-b270cd503c83" TextString="[strTrackId]" Timeout="5" Version="V3">
                           <uix:NGetText.Target>
                             <uix:TargetAnchorable BrowserURL="https://www.paypal.com/activity/payment/80V14354XY673014S" DesignTimeRectangle="889, 1223, 641, 54" DesignTimeScaleFactor="2.5" ElementType="Text" FriendlyName="'42067114940011120620391…'" FullSelectorArgument="&lt;webctrl aaname='*' parentclass='trackShipmentInfo' /&gt;" FuzzySelectorArgument="&lt;webctrl parentclass='trackShipmentInfo' tag='DIV' type='' class='' /&gt;" Guid="50d2d5f4-47df-4835-90a2-eb32e6a35cff" InformativeScreenshot="452dd607762e786f647defe13cd0bfa9.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Transaction details - PayPal' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V1" Visibility="Interactive">
                               <uix:TargetAnchorable.Anchors>
@@ -218,22 +222,15 @@
                             </uix:TargetAnchorable>
                           </uix:NGetText.Target>
                         </uix:NGetText>
-                        <If Condition="[String.IsNullOrEmpty(row(&quot;Tracking ID&quot;).ToString.Trim) = true]" sap:VirtualizedContainerService.HintSize="510,491.6" sap2010:WorkflowViewState.IdRef="If_1">
+                        <If Condition="[String.IsNullOrEmpty(Convert.ToString(strTrackId)) = true AND IsNothing(row.Item(&quot;Tracking ID&quot;)) = true]" sap:VirtualizedContainerService.HintSize="510,500.4" sap2010:WorkflowViewState.IdRef="If_1">
                           <If.Then>
-                            <Sequence sap:VirtualizedContainerService.HintSize="476,170.4" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                            <Sequence sap:VirtualizedContainerService.HintSize="376,179.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:Object">[row.Item("Tracking ID")]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:Object">[strTrackId]</InArgument>
-                                </Assign.Value>
-                              </Assign>
+                              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,90.8" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="Empty!" />
                             </Sequence>
                           </If.Then>
                           <If.Else>
@@ -248,7 +245,7 @@
                                   <OutArgument x:TypeArguments="x:Object">[row.Item("Tracking ID")]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:Object">[""]</InArgument>
+                                  <InArgument x:TypeArguments="x:Object">[strTrackId]</InArgument>
                                 </Assign.Value>
                               </Assign>
                             </Sequence>
@@ -266,7 +263,24 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ForEachRow>
-            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dtData]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="730,116" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="Sheet1" WorkbookPath="processingOrders.xlsx" />
+            <ui:FilterDataTable DataTable="[dtData]" DisplayName="Filter Data Table" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="730,163.2" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dtData]" SelectColumnsMode="Keep">
+              <ui:FilterDataTable.Filters>
+                <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                  <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
+                    <ui:FilterOperationArgument.Column>
+                      <InArgument x:TypeArguments="x:Int32">[4]</InArgument>
+                    </ui:FilterOperationArgument.Column>
+                  </ui:FilterOperationArgument>
+                </scg:List>
+              </ui:FilterDataTable.Filters>
+              <ui:FilterDataTable.SelectColumns>
+                <scg:List x:TypeArguments="InArgument" Capacity="4">
+                  <x:Null />
+                </scg:List>
+              </ui:FilterDataTable.SelectColumns>
+            </ui:FilterDataTable>
+            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dtData]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="730,116" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="Sheet1" WorkbookPath="completedOrders.xlsx" />
+            <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="730,80.8" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="processingOrders.xlsx" />
             <uix:NGoToUrl DisplayName="Go To URL" sap:VirtualizedContainerService.HintSize="730,82.4" sap2010:WorkflowViewState.IdRef="NGoToUrl_2" Url="[strPayLogout]" Version="V3" />
           </Sequence>
         </ActivityAction>
